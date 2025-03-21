@@ -47,6 +47,8 @@ int main(void) {
     noecho();
     curs_set(0);
     keypad(stdscr, TRUE);
+    start_color();
+    init_pair(1, COLOR_WHITE, COLOR_BLACK);
 
     int highlight = 0;
     int choix;
@@ -84,10 +86,39 @@ int main(void) {
     if (highlight == 0) {
         clear();
         refresh();
-        mvprintw(10, 10, "-");
-        mvprintw(10, 11, "-");
-        mvprintw(10, 12, "-");
+        for (int i = COLS / 2 - 10; i <= COLS / 2 + 10; i++) {
+            mvprintw(LINES / 2 - 2, i, "-");
+            mvprintw(LINES / 2 + 2, i, "-");
+        }
+        for (int i = LINES / 2 - 5; i <= LINES / 2 + 5; i++) {
+            mvprintw(i, COLS / 2 - 4, "|");
+            mvprintw(i, COLS / 2 + 4, "|");
+        }
+
+        // case l=1 ; h=1
+        mvprintw(LINES / 2 - 4, COLS / 2 - 8, "X");
+        // case l=2 ; h=1
+        mvprintw(LINES / 2, COLS / 2 - 8, "X");
+        // case l=3 ; h=1
+        mvprintw(LINES / 2 + 4, COLS / 2 - 8, "X");
+
+
+        // case l=1 ; h=2
+        mvprintw(LINES / 2 - 4, COLS / 2, "X");
+        // case l=2 ; h=2
+        mvprintw(LINES / 2, COLS / 2, "X");
+        // case l=3 ; h=2
+        mvprintw(LINES / 2 + 4, COLS / 2, "X");
+
+
+        // case l=1 ; h=3
+        mvprintw(LINES / 2 - 4, COLS / 2 + 8, "X");
+        // case l=2 ; h=3
+        mvprintw(LINES / 2, COLS / 2 + 8, "X");
+        // case l=3 ; h=3
+        mvprintw(LINES / 2 + 4, COLS / 2 + 8, "X");
     }
+
 
     getch();
     endwin();
