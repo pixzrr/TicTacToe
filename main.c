@@ -2,6 +2,18 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+int logo() {
+    printw("----------------------------------------------------------------------- \n");
+    printw(" TTTTT  III  CCCCC      TTTTT    AAAAA   CCCCC      TTTTT   OOO   EEEEE \n");
+    printw("   T     I   C            T     A     A  C            T    O   O  E     \n");
+    printw("   T     I   C            T     AAAAAAA  C            T    O   O  EEEE  \n");
+    printw("   T     I   C            T     A     A  C            T    O   O  E     \n");
+    printw("   T    III  CCCCC        T     A     A  CCCCC        T     OOO   EEEEE \n");
+    printw("----------------------------------------------------------------------- \n");
+    return 0;
+}
+
+
 void menu(int highlight) {
     const char *elements[] = {
         "Joueur contre Joueur",
@@ -28,17 +40,6 @@ void menu(int highlight) {
             printw("%s\n",elements[i]);
         }
     }
-}
-
-int logo() {
-    printw("----------------------------------------------------------------------- \n");
-    printw(" TTTTT  III  CCCCC      TTTTT    AAAAA   CCCCC      TTTTT   OOO   EEEEE \n");
-    printw("   T     I   C            T     A     A  C            T    O   O  E     \n");
-    printw("   T     I   C            T     AAAAAAA  C            T    O   O  EEEE  \n");
-    printw("   T     I   C            T     A     A  C            T    O   O  E     \n");
-    printw("   T    III  CCCCC        T     A     A  CCCCC        T     OOO   EEEEE \n");
-    printw("----------------------------------------------------------------------- \n");
-    return 0;
 }
 
 int main(void) {
@@ -82,7 +83,6 @@ int main(void) {
     }
 
 
-
     if (highlight == 0) {
         clear();
         refresh();
@@ -93,6 +93,14 @@ int main(void) {
         for (int i = LINES / 2 - 5; i <= LINES / 2 + 5; i++) {
             mvprintw(i, COLS / 2 - 4, "|");
             mvprintw(i, COLS / 2 + 4, "|");
+        }
+
+        while (1) {
+            choix = getch();
+
+            if (choix == 'q' || choix == 'Q') {
+                main();
+            }
         }
 
         // case l=1 ; h=1
@@ -119,6 +127,9 @@ int main(void) {
         mvprintw(LINES / 2 + 4, COLS / 2 + 8, "X");
     }
 
+    if (highlight == 5) {
+        endwin();
+    }
 
     getch();
     endwin();
