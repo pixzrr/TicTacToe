@@ -42,6 +42,26 @@ void menu(int highlight) {
     }
 }
 
+void JvsJ (int *l, int *h){
+    for (int i = 0 ; i < 3 ; i++){
+        if (i == l){
+        for (int j = 0 ; j < 3 ; j++){
+            if (j == h){
+                mvprintw(LINES / 2 + i, COLS / 2 + j, "X");
+            }
+        }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
 int main(void) {
     initscr();
     refresh();
@@ -97,50 +117,40 @@ int main(void) {
 
         while (1) {
             choix = getch();
-            int l = 0;
-            int h = 0;
+            int l = -4;
+            int h = -8;
             switch (choix) {
                 case KEY_UP:
-                    if (l == 0){
+                    if (h == -8){
                         break;
                     } else {
-                        l += 1;
+                        h += 8;
                         break;
                     }
                 case KEY_DOWN:
-                    if (l == 2){
+                    if (h == 8){
                         break;
                     } else {
-                        l -= 1;
+                        h -= 8;
                         break;
                     }
                 case KEY_LEFT:
-                    if (h == 0){
+                    if (l == -4){
                         break;
                     } else {
-                        attron(A_UNDERLINE);
-                        mvprintw(LINES / 2 - 4, COLS / 2 - 8, " ");
-                        attroff(A_UNDERLINE);
-                        h -= 1;
+                        l -= 4;
                         break;
                     }
                 case KEY_RIGHT:
-                    if (h == 2){
+                    if (l == 4){
                         break;
                     } else {
-                        attron(A_UNDERLINE);
-                        mvprintw(LINES / 2, COLS / 2 - 8, " ");
-                        attroff(A_UNDERLINE);
-                        h += 1;
+                        l += 4;
                         break;
                     }
             }
             if (choix == ' '){
-                if (l == 0 && h == 0){
-                    mvprintw(LINES / 2 - 4, COLS / 2 - 8, "X");
-                } else if (l == 1 && h == 0){
-                    mvprintw(LINES / 2, COLS / 2 - 8, "X");
-                }
+                JvsJ(l, h);
             }
 
             if (choix == 'q' || choix == 'Q') {
