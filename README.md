@@ -33,4 +33,4 @@ Le jeu a été concu de telle sorte que l'utilisateur puisse se repérer facilem
 Si vous avez des quesitons ou des suggestions à me faire, n'hésitez pas !
 
 
-# Merci d'avoir pris le temps de me lire et bon jeu !
+### Merci d'avoir pris le temps de me lire et bon jeu !
